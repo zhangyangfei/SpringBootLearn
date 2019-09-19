@@ -11,7 +11,7 @@
 	<groupId>com.zyf</groupId>
 	<artifactId>springTrans</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>springTrans</name>
 	<description>Demo project for Spring Boot - spring transaction</description>
 
 	<properties>
@@ -21,7 +21,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
 		<dependency>

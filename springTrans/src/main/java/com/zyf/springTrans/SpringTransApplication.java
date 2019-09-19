@@ -1,13 +1,14 @@
-package com.example.demo;
+package com.zyf.springTrans;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class SpringTransApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(SpringTransApplication.class, args);
+		System.out.println("hello SpringTrans");
 	}
 
 }
