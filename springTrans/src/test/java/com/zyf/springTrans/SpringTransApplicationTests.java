@@ -11,7 +11,7 @@ public class SpringTransApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println("hello springDb test1");
+		System.out.println("hello springTrans test");
 	}
 
 }
