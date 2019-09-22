@@ -16,9 +16,9 @@ public class SpringDbApplicationTests {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
 	@Test
 	public void contextLoads() {
-		System.out.println("hello springDb test");
 		List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from t_user");
 		System.out.println(list);	
 	}
