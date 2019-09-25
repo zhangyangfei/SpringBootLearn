@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.pool2.UsageTracking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -77,7 +76,8 @@ public class UserService {
 	}
 	
 	/**
-	 * 获得用户列表，返回map，map的key就是表字段名
+	 * 获得用户列表
+	 * 		Statement 可执行多次sql，且放在同一事物中
 	 * @return
 	 */
 	public List<User> getUserList2(User user){
