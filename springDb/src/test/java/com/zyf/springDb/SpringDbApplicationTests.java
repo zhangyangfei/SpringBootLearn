@@ -12,6 +12,8 @@ import com.zyf.springDb.jdbctemplate.pojo.User;
 import com.zyf.springDb.jdbctemplate.service.UserService;
 import com.zyf.springDb.jpa.entity.UserEntity;
 import com.zyf.springDb.jpa.service.UserEntityService;
+import com.zyf.springDb.mybatis.dto.UserDto;
+import com.zyf.springDb.mybatis.service.UserMyBatisService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -117,7 +119,7 @@ public class SpringDbApplicationTests {
 		System.out.println("用户列表：" + userList);
 	}
 	
-	@Test
+//	@Test
 	public void findBySexAndNoteLike(){
 		UserEntity user = new UserEntity();
 		user.setName("zha");
@@ -125,5 +127,23 @@ public class SpringDbApplicationTests {
 		user.setNote("好学生");
 		List<UserEntity> userList = userEntityService.findBySexAndNoteLike(user);
 		System.out.println("用户列表：" + userList);
+	}
+	
+//	@Test
+	public void findByNameAndNote(){
+		UserEntity user = new UserEntity();
+		user.setName("zha");
+		user.setSex(2);
+		user.setNote("好学生");
+		List<UserEntity> userList = userEntityService.findByNameAndNote(user);
+		System.out.println("用户列表：" + userList);
+	}
+	
+	@Autowired
+	UserMyBatisService userMyBatisService;
+	@Test
+	public void getUserById(){
+		UserDto userDto = userMyBatisService.getUserById(1);
+		System.out.println("用户：" + userDto);
 	}
 }

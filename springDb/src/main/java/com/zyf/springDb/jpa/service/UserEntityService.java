@@ -51,9 +51,15 @@ public class UserEntityService {
 		return userJpaRepository.findByNameLikeOrNoteLike("%" + user.getName() + "%","%" + user.getNote() + "%");
 	}
 	
-	/** 根据用户名or备注模糊查询 */
+	/** 根据用户名and备注模糊查询 */
 	public List<UserEntity> findBySexAndNoteLike(UserEntity user) {
 		// findByNameLikeOrNoteLike方法为在UserJpaRepository自定义，需要按照字段规则
 		return userJpaRepository.findBySexAndNoteLike(user.getSex(),"%" + user.getNote() + "%");
+	}
+	
+	/** 根据用户名and备注模糊查询 */
+	public List<UserEntity> findByNameAndNote(UserEntity user) {
+		// findByNameLikeOrNoteLike方法为在UserJpaRepository自定义，需要按照字段规则
+		return userJpaRepository.findByNameAndNote(user.getName(),user.getNote());
 	}
 }
