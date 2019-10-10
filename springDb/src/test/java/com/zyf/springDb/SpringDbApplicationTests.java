@@ -154,7 +154,8 @@ public class SpringDbApplicationTests {
 	UserBatchService userBatchService;
 	@Test
 	public void insertBatch(){
-		int in = userBatchService.insertBatch(getUserList());
+//		int in = userBatchService.insertBatch(getUserList());
+		int in = userBatchService.insertBatch2(getUserList());
 		System.out.println("批量存入用户：" + in);
 	}
 	
