@@ -1,5 +1,6 @@
 package com.zyf.springDb;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -13,6 +14,7 @@ import com.zyf.springDb.jdbctemplate.service.UserService;
 import com.zyf.springDb.jpa.entity.UserEntity;
 import com.zyf.springDb.jpa.service.UserEntityService;
 import com.zyf.springDb.mybatis.dto.UserDto;
+import com.zyf.springDb.mybatis.service.UserBatchService;
 import com.zyf.springDb.mybatis.service.UserMyBatisService;
 
 @RunWith(SpringRunner.class)
@@ -141,9 +143,45 @@ public class SpringDbApplicationTests {
 	
 	@Autowired
 	UserMyBatisService userMyBatisService;
-	@Test
+//	@Test
 	public void getUserById(){
 		UserDto userDto = userMyBatisService.getUserById(1);
 		System.out.println("用户：" + userDto);
 	}
+	
+	// 传播行为测试  start
+	@Autowired
+	UserBatchService userBatchService;
+	@Test
+	public void insertBatch(){
+		int in = userBatchService.insertBatch(getUserList());
+		System.out.println("批量存入用户：" + in);
+	}
+	
+	private List<UserDto> getUserList(){
+		List<UserDto> list = new ArrayList<UserDto>();
+		UserDto user = new UserDto();
+		user.setId(1);
+		user.setName("xues1");
+		user.setSex(2);
+		user.setNote("好学生1");
+		list.add(user);
+		
+		UserDto user2 = new UserDto();
+		user2.setId(1);
+		user2.setName("xues2");
+		user2.setSex(1);
+		user2.setNote("好学生2");
+		list.add(user2);
+		
+		UserDto user3 = new UserDto();
+		user3.setId(3);
+		user3.setName("xues3");
+		user3.setSex(1);
+		user3.setNote("好学生3");
+		list.add(user3);
+		
+		return list;
+	}
+	// 传播行为测试  end
 }

@@ -10,6 +10,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zyf.springDb.jdbctemplate.pojo.User;
 
@@ -47,6 +49,7 @@ public class UserService {
 	 * @param user
 	 * @return
 	 */
+	@Transactional(propagation = Propagation.NESTED)
 	public int insertUser(User user) {
 		String sql = "insert into t_user(name,sex,note) values (?,?,?)";
 		// 参数多时可以通过数据传递，有序

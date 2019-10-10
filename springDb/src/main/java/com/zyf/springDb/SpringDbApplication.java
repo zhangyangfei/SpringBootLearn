@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Repository;
 
 // mybatis扫描策略：basePackages=基础包，annotationClass = 注解名
-@MapperScan(basePackages = "com.zyf.springDb.mybatis.*", annotationClass = Repository.class)
+@MapperScan(basePackages = "com.zyf.springDb.*.dao", annotationClass = Repository.class)
 @SpringBootApplication
 public class SpringDbApplication {
 

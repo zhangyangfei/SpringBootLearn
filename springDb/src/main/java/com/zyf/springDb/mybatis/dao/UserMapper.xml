@@ -6,4 +6,10 @@
     <select id="getUserById" parameterType="int" resultType="com.zyf.springDb.mybatis.dto.UserDto">
         select id, name, sex, note from t_user where id = #{id}
     </select>
+    <insert id="insertUser">
+    	insert into t_user 
+    	(id,name,sex,note)
+    	value
+    	(#{id},#{name},#{sex},#{note})
+    </insert>
 </mapper>

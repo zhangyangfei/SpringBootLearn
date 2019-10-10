@@ -9,4 +9,5 @@ import com.zyf.springDb.mybatis.dto.UserDto;
 @Mapper
 public interface UserMapper {
 	UserDto getUserById(int id);
+	int insertUser(UserDto userDto);
 }
