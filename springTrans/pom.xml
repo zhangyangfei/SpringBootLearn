@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.zyf</groupId>
-	<artifactId>springTrans</artifactId>
+	<artifactId>springRedis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springTrans</name>
-	<description>Demo project for Spring Boot - spring transaction</description>
+	<name>springRedis</name>
+	<description>Demo project for Spring Boot - spring redis</description>
 
 	<properties>
 		<java.version>1.8</java.version>
