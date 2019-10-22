@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.zyf.springTrans.redisconnection.RedisService;
+import com.zyf.springTrans.redislua.RedisLuaDemo;
 import com.zyf.springTrans.redismulti.RedisTransService;
 import com.zyf.springTrans.redispubsub.RedisMsgService;
 
@@ -21,7 +22,7 @@ public class SpringTransApplicationTests {
 	
 	@Autowired
 	RedisService redisService;
-	@Test
+//	@Test
 	public void redisOperate() {
 		redisService.redisOperate();
 	}
@@ -73,5 +74,12 @@ public class SpringTransApplicationTests {
 //	@Test
 	public void sendredismsg() {
 		redisMsgService.sendredismsg();
+	}
+	
+	@Autowired
+	RedisLuaDemo redisLuaDemo;
+	@Test
+	public void testLua() {
+		redisLuaDemo.testLua();
 	}
 }
