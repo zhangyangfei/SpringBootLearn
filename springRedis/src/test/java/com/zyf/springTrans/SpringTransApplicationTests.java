@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.zyf.springTrans.rediscache.servcie.UserServcie;
 import com.zyf.springTrans.redisconnection.RedisService;
 import com.zyf.springTrans.redislua.RedisLuaDemo;
 import com.zyf.springTrans.redismulti.RedisTransService;
@@ -78,8 +79,17 @@ public class SpringTransApplicationTests {
 	
 	@Autowired
 	RedisLuaDemo redisLuaDemo;
-	@Test
+//	@Test
 	public void testLua() {
 		redisLuaDemo.testLua();
 	}
+	
+	@Autowired
+	UserServcie userServcie;
+	@Test
+	public void getUserById() {
+		System.out.println(userServcie.getUserById(1));
+	}
+	
+	
 }
