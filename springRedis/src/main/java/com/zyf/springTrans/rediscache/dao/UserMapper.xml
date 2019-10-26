@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zyf.springTrans.rediscache.dao.UserMapper">
-    <select id="getUserById" parameterType="int" resultType="com.zyf.springTrans.rediscache.pojo.User">
-        select id, name, sex, note from t_user where id = #{id}
-    </select>
-    <insert id="insertUser">
-    	insert into t_user 
-    	(id,name,sex,note)
-    	value
-    	(#{id},#{name},#{sex},#{note})
-    </insert>
+	<select id="getUserById" parameterType="int"
+		resultType="com.zyf.springTrans.rediscache.pojo.User">
+		select id, name, sex, note from t_user where id = #{id}
+	</select>	
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id" 
+		parameterType="com.zyf.springTrans.rediscache.pojo.User">
+		insert into t_user (name,sex,note) value (#{name},#{sex},#{note})
+	</insert>
+	<update id="updateUser" parameterType="com.zyf.springTrans.rediscache.pojo.User">
+		update t_user
+		set name = #{name},sex = #{sex},note = #{note}
+		where id = #{id}
+	</update>
+	<delete id="deleteUserById" parameterType="int">
+		delete from t_user where id = #{id}
+	</delete>
 </mapper>

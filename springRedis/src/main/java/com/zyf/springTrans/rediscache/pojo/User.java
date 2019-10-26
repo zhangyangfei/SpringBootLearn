@@ -1,7 +1,10 @@
 package com.zyf.springTrans.rediscache.pojo;
 
-public class User {
+import java.io.Serializable;
 
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 1682049189405672046L;
 	private int id;
 	private String name;
 	private int sex;

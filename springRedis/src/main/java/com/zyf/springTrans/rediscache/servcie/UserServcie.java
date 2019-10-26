@@ -8,9 +8,9 @@ public interface UserServcie {
 
 	User getUserById(int id);
 
-	User insertUser(User ser);
+	User insertUser(User user);
 
-	User updateUser(User ser);
+	User updateUser(User user);
 
 	List<User> getUsers(User user);
 
