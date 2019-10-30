@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>mp6</title>
+<!-- 加载Query文件-->
+<script src="https://code.jquery.com/jquery-3.2.0.js">
+</script>
+<script type="text/javascript">
+	$(function() {
+		var params = {
+            id:2,
+			name:'zhangsan',
+            note:'测试json参数',
+            sex:1
+        };
+		$("#button").click(function() {
+			$.post({
+	            url : "/mvcparam/mp7",
+	            // 此处需要告知传递参数类型为JSON，不能缺少
+	            contentType : "application/json",
+	            // 将JSON转化为字符串传递
+	            data : JSON.stringify(params),
+	            // 成功后的方法
+	            success : function(result) {
+	            }
+	        });
+		});
+	});
+</script>
+</head>
+<body>
+	<p>hello spring mvc mp6</p>
+	<button id="button">按钮</button>
+</body>
+</html>
