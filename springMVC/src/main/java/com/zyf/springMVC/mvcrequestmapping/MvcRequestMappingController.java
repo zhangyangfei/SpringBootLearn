@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 )
 public class MvcRequestMappingController {
 
-	@RequestMapping(value = "/rm1")
+	@RequestMapping(value={"/*/rm1","/rm2"})//匹配多个路径，且其中一个匹配任意一个目录
 	public ModelAndView mvc1(int id) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("id", id);
