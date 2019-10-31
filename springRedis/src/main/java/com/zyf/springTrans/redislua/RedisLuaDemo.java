@@ -1,7 +1,5 @@
 package com.zyf.springTrans.redislua;
 
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
@@ -15,7 +13,7 @@ public class RedisLuaDemo {
 	@Autowired
 	private RedisTemplate<Object, Object> redisTemplate;
 
-	/** redis lua */
+	/** redis lua脚本入门 */
 	public void testLua() {
 		DefaultRedisScript<String> drs = new DefaultRedisScript<String>();
 		// 设置脚本
