@@ -121,10 +121,8 @@ public class MvcParamController {
 	 */
 	@RequestMapping(value = { "/mp7" })
 	@ResponseBody//@ResponseBody是作用在方法上的，@ResponseBody 表示该方法的返回结果直接写入 HTTP response body 中，一般在异步获取数据时使用【也就是AJAX】。
-	public ModelAndView mp7(@RequestBody User user) {//@RequestBody表示通过User接收前段的json请求，且二者属性名称必须保持一致，否则无法接收到对应属性的数据。
+	public User mp7(@RequestBody User user) {//@RequestBody表示通过User接收前段的json请求，且二者属性名称必须保持一致，否则无法接收到对应属性的数据。
 		System.out.println(user);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("mvcparam/mp6");
-		return mv;
+		return user;
 	}
 }
