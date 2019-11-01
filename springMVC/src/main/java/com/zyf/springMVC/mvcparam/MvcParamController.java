@@ -2,6 +2,7 @@ package com.zyf.springMVC.mvcparam;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -124,5 +125,35 @@ public class MvcParamController {
 	public User mp7(@RequestBody User user) {//@RequestBody表示通过User接收前段的json请求，且二者属性名称必须保持一致，否则无法接收到对应属性的数据。
 		System.out.println(user);
 		return user;
+	}
+	
+	/**
+	 * 自定义转换（1对1）
+	 * 	url中的参数名和控制器方法的参数名要相同
+	 * 	url中的字符串参数被自定义转换器转换为User类型
+	 * 
+	 * 	http://localhost:8080/mvcparam/mp8?user=3-wangwu-1-数据转换器测试
+	 */
+	@RequestMapping(value = { "/mp8" }) 
+	public ModelAndView mp8(User user) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", user);
+		mv.setViewName("mvcparam/mp8");
+		return mv;
+	}
+	
+	/**
+	 * 自定义转换（1对list）
+	 * 	url中的参数名和控制器方法的参数名要相同
+	 * 	url中的字符串先被转化成数组，然后数组的元素被自定义转换器转换为User类型
+	 * 
+	 * 	http://localhost:8080/mvcparam/mp9?userList=3-wangwu-1-数据转换器测试,4-zhaoliu-2-数据list转换器测试
+	 */
+	@RequestMapping(value = { "/mp9" }) 
+	public ModelAndView mp9(List<User> userList) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("userList", userList);
+		mv.setViewName("mvcparam/mp9");
+		return mv;
 	}
 }
