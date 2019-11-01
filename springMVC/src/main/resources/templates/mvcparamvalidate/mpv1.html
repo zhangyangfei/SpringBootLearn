@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mp6</title>
+<title>MPV1</title>
 <!-- 加载Query文件-->
 <script src="https://code.jquery.com/jquery-3.2.0.js">
 </script>
@@ -12,12 +12,23 @@
 			id:null,
 			name:'z',
 			note:'数据验证',
-			sex:4
+			sex:4,
 			birthday:'2020-01-01',
 			fut:'2019-01-01',
 			yue:2000,
 			email:'qweertrty',
 			rang:30
+		};
+		var params2 = {
+			id:'3',
+			name:'zhangsan',
+			note:'数据验证',
+			sex:2,
+			birthday:'2000-01-01',
+			fut:'2025-01-01',
+			yue:501.01,
+			email:'6442342@qq.com',
+			rang:10
 		};
 		$("#button").click(function() {
 			$.post({
@@ -29,7 +40,7 @@
 				// 成功后的方法
 				success : function(result) {
 					if(result != null){
-						alert("参数传递成功，用户名="+result.name);
+// 						alert("参数传递成功，用户名="+result.name);
 					}
 				}
 			});
@@ -38,7 +49,6 @@
 </script>
 </head>
 <body>
-	<p>hello spring mvc mp6</p>
 	<button id="button">按钮</button>
 </body>
 </html>
