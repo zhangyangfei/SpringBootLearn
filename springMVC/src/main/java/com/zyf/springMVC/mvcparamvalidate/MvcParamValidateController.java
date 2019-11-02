@@ -19,17 +19,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MvcParamValidateController {
 
 	@RequestMapping(value = "/mpv1")
-	private String mpv1() {
+	public String mpv1() {
 		return "mvcparamvalidate/mpv1";
 	}
 
 	/**
-	 * JSR-303参数验证
-	 * 	注解@Valid开启验证，否则errors.getAllErrors()不能获取到错误信息
+	 * JSR-303参数验证 注解@Valid开启验证，否则errors.getAllErrors()不能获取到错误信息
 	 */
 	@RequestMapping(value = "/mpv2")
 	@ResponseBody
-	private User mpv2(@Valid @RequestBody User user, Errors errors) {
+	public User mpv2(@Valid @RequestBody User user, Errors errors) {
 		List<ObjectError> errList = errors.getAllErrors();
 		for (ObjectError oError : errList) {
 			// 如果是字段错误
@@ -42,25 +41,24 @@ public class MvcParamValidateController {
 		}
 		return user;
 	}
-	
+
 	/**
-	 * 绑定自定义参数校验器
-	 * 	用setValidator()方法，原来的JSR-303则不做校验了
-	 * 	用addValidators()方法，原来的JSR-303校验依旧有效，且自定义校验也有效（推荐）
+	 * 绑定自定义参数校验器 执行控制器方法前会先执行@InitBinder方法 用setValidator()方法，原来的JSR-303则不做校验了
+	 * 用addValidators()方法，原来的JSR-303校验依旧有效，且自定义校验也有效（推荐）
 	 */
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		// binder.setValidator(new UserValidator());//设定参数校验器
-		binder.addValidators(new UserValidator());// 增加参数校验器（可多个）
+		// binder.setValidator(new UserValidator());//设定参数校验器(先清空原有校验器，再设定)
+		// binder.addValidators(new UserValidator());// 增加参数校验器（可多个）
+		// ---> 到共通CommonControllerAdvice绑定验证器
 	}
-	
+
 	/**
-	 * 自定义参数校验
-	 * 	注解@Valid开启验证，否则JSR-303验证和UserValidator()都不生效
+	 * 自定义参数校验 注解@Valid开启验证，否则JSR-303验证和UserValidator()都不生效
 	 */
 	@RequestMapping(value = "/mpv3")
 	@ResponseBody
-	private User mpv3(@Valid @RequestBody User user, Errors errors) {
+	public User mpv3(@Valid @RequestBody User user, Errors errors) {
 		List<ObjectError> errList = errors.getAllErrors();
 		for (ObjectError oError : errList) {
 			// 如果是字段错误
