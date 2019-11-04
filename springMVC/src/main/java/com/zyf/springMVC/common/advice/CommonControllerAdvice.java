@@ -16,7 +16,7 @@ import com.zyf.springMVC.common.utils.ApplicationContextUtil;
 /**
  * controller类的通知
  */
-@ControllerAdvice(basePackages = { "com.zyf.*" }, annotations = Controller.class)
+//@ControllerAdvice(basePackages = { "com.zyf.springMVC.mvcparamvalidate" }, annotations = Controller.class)
 public class CommonControllerAdvice {
 	@SuppressWarnings("rawtypes")
 	@InitBinder
