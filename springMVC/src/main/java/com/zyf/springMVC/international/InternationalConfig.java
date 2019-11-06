@@ -19,11 +19,11 @@ public class InternationalConfig implements WebMvcConfigurer {
 	// 国际化解析器，bean的名称必须用"localeResolver"
 	@Bean("localeResolver")
 	public LocaleResolver initLocaleResolver() {
-		 SessionLocaleResolver slr = new SessionLocaleResolver();
-		// slr.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);//配置国际化区域为简体中文
-		// slr.setDefaultLocale(Locale.US);// 配置国际化区域为美国英文
-		 return slr;
-//		return new I18nLocaleResolver();
+		// 可以将国际化信息设置在session中;比其他解析器灵活，用户可以选择国际化区域。
+		SessionLocaleResolver slr = new SessionLocaleResolver();
+		slr.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);// 配置默认国际化区域为简体中文
+		// slr.setDefaultLocale(Locale.US);// 配置默认国际化区域为美国英文
+		return slr;
 	}
 
 	// 国际化拦截器
@@ -35,6 +35,7 @@ public class InternationalConfig implements WebMvcConfigurer {
 			return localeChangeInterceptor;
 		}
 		localeChangeInterceptor = new LocaleChangeInterceptor();
+		// 设置拦截的参数，该参数的值将作为国际化区域（语言）
 		localeChangeInterceptor.setParamName("language");
 		return localeChangeInterceptor;
 	}

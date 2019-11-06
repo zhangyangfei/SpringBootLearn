@@ -5,7 +5,9 @@
 <title>mic1</title>
 </head>
 <body>
-	<button id="button">按钮</button>
-	<span>消息：</span><span th:text="${msg}"></span>
+	<span>当前语言：</span><span th:text="${language}"></span></br>
+	<!-- language参数对应值将后台拦截，并存放到session中 -->
+	<a href="./ic1?language=zh_CN">简体中文</a> <a href="./ic1?language=en_US">ENGLISH</a></br>
+	<span>消息：</span><span th:text="${msg}"></span></br>
 </body>
 </html>
