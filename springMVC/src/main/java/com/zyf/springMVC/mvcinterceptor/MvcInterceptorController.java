@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(path = "/mvcinterceptor")
 public class MvcInterceptorController {
 
+	// http://localhost:8080/mvcinterceptor/mic1?id=1
 	@RequestMapping(value = "/mic1")
 	public ModelAndView mic1(@RequestParam(value = "id") int userid,ModelAndView modelAndView) {
 		modelAndView.addObject("userid",userid); 
