@@ -30,8 +30,9 @@ public class MvcRedirectController {
 	public ModelAndView mrd3(String name, RedirectAttributes ra, ModelAndView mav) {
 		User user = new User();
 		user.setName(name);
-		// 重定向到mrd4，且将数据传递过去
+		// 重定向到mrd4，且将对象数据传递过去
 		ra.addFlashAttribute("user", user);
+		// mav.addObject("user", user); 此方法无法传递对象
 		mav.setViewName("redirect:/mvcredirect/mrd4");
 		return mav;
 	}
