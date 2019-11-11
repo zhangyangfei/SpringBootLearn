@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 /** 控制器的通知类 */
-// 指定扫描的包和指定有哪些注解的类
-//@ControllerAdvice(basePackages = { "com.zyf.springMVC.mvccontrolleradvice.*" }) // 指定失败
-//@ControllerAdvice(annotations = { Controller.class })// 指定成功
-@ControllerAdvice(basePackages = { "com.zyf.springMVC.zzz.*" },annotations = { Controller.class })// 指定成功，路径是故意取错的，可见basePackages的指定没有作用
+// 指定扫描的包和指定有哪些注解的类(取符合二者的并集)
+//@ControllerAdvice(basePackages = { "com.zyf.springMVC.mvccontrolleradvice" })
+//@ControllerAdvice(annotations = { Controller.class })
+@ControllerAdvice(basePackages = { "com.zyf.springMVC.mvccontrolleradvice" },annotations = { Controller.class })
 public class MvcControllerAdvice {
 
 	// mvc异常处理，如果发送异常，进入该方法
