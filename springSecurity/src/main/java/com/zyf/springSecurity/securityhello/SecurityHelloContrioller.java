@@ -15,4 +15,13 @@ public class SecurityHelloContrioller {
 	public String sh1() {
 		return "securityhello/sh1";
 	}
+	
+	@RequestMapping("/sh2")
+	public String sh2() {
+		return "securityhello/sh1";
+	}
+	@RequestMapping("/sh3")
+	public String sh3() {
+		return "securityhello/sh1";
+	}
 }
