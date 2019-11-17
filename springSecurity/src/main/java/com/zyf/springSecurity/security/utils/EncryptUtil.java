@@ -1,4 +1,4 @@
-package com.zyf.springSecurity.security.config;
+package com.zyf.springSecurity.security.utils;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
