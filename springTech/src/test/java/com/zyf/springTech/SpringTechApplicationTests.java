@@ -14,9 +14,15 @@ public class SpringTechApplicationTests {
 
 	@Autowired
 	private ActiveMqServcie activeMqServcie;
-	@Test
-	public void contextLoads() {
+
+//	@Test
+	public void send() {
 		activeMqServcie.send();
+	}
+
+	@Test
+	public void sendDest() {
+		activeMqServcie.sendDest();
 	}
 
 }
