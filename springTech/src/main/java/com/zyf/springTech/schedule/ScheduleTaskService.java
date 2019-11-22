@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 public class ScheduleTaskService {
 
 	// 每5秒执行一次
-	@Scheduled(fixedRate = 5000)
+//	@Scheduled(fixedRate = 5000)
 	public void job1() { // ※ 必须用public修饰
 		System.out.println("执行job1，时刻=" + System.currentTimeMillis());
 	}
 
 	// 每10秒执行一次
-	@Scheduled(fixedRate = 10000)
+//	@Scheduled(fixedRate = 10000)
 	@Async // 异步调用（异步线程池）
 	public void job2() {
 		System.out.println("执行job1，时刻=" + System.currentTimeMillis());
@@ -32,13 +32,13 @@ public class ScheduleTaskService {
 	// 第6列星期1-7 或者 SUN-SAT（1表示星期天） 
 	
 	// 每分钟的1秒执行
-	@Scheduled(cron = "1 * * * * ?")
+//	@Scheduled(cron = "1 * * * * ?")
 	public void job3() {
 		System.out.println("执行job3，时刻=" + System.currentTimeMillis());
 	}
 
 	// 每天零点执行
-	@Scheduled(cron = "0 0 0 * * ? ")
+//	@Scheduled(cron = "0 0 0 * * ? ")
 	public void job4() {
 		System.out.println("执行job4，时刻=" + System.currentTimeMillis());
 	}
