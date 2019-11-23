@@ -12,6 +12,7 @@ public class MessageController {
 	@Autowired
 	private MessageProducer messageProducer;
 
+	// http://localhost:8081/activemq/send
 	@RequestMapping("/send")
 	public String sendMessage() {
 		MessageRequestDto req = new MessageRequestDto();

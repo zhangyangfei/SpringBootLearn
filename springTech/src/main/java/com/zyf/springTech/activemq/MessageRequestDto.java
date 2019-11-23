@@ -12,9 +12,6 @@ public class MessageRequestDto implements Serializable {
 	// 业务数据
 	private String data;
 
-	// 应答地址
-	private String replayDestination;
-
 	public String getId() {
 		return id;
 	}
@@ -29,14 +26,6 @@ public class MessageRequestDto implements Serializable {
 
 	public void setData(String data) {
 		this.data = data;
-	}
-
-	public String getReplayDestination() {
-		return replayDestination;
-	}
-
-	public void setReplayDestination(String replayDestination) {
-		this.replayDestination = replayDestination;
 	}
 
 }
