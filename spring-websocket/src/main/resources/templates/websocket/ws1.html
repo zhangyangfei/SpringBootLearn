@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>websocket</title>
+<!-- thymeleaf引入js语法 -->
+<script th:src="@{/js/jquery/jquery-3.4.1.js}"></script>
+<script th:src="@{/js/websocket/ws1.js}"></script>
+<script th:src="@{/js/websocket/websocket.js}"></script>
+</head>
+<body>
+	<textarea id="message" cols="40" rows="4"></textarea></br>
+	<button id="send">发送</button>
+	<button id="close">关闭</button>
+	<button id="reconnect">重连</button>
+	<div id="context"></div>
+</body>
+</html>
