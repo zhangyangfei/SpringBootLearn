@@ -1,12 +1,14 @@
 /**
  * websocket共通js
  */
+
 var websocket = null;
 var serverEndpoint = "ws";
 // 判断当前浏览器是否支持WebSocket
 if ('WebSocket' in window) {
-	// 创建WebSocket对象,连接服务器端点【浏览器访问要同下面的一样，全用ip】
-	websocket = new WebSocket("ws://192.168.2.107:8080/"+serverEndpoint);
+	// 创建WebSocket对象,连接服务器端点【浏览器访问要同下面的一样】
+//	websocket = new WebSocket("ws://192.168.30.42:8180/"+serverEndpoint);
+	websocket = new WebSocket("ws://"+window.location.host+"/"+serverEndpoint);
 } else {
 	alert('本浏览器不支持websocket')
 }
@@ -56,7 +58,7 @@ function sendMessage(message) {
 //重连
 function reconnect() {
 	if(websocket.OPEN !== websocket.readyState){
-		websocket = new WebSocket("ws://localhost:8080/"+serverEndpoint);
+		websocket = new WebSocket("ws://"+window.location.host+"/"+serverEndpoint);
 	}
 }
 
