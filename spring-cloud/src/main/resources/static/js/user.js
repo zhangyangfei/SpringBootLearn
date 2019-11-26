@@ -13,7 +13,8 @@ $(function() {
 			// 将JSON转化为字符串传递
 			data : JSON.stringify(user),
 			// 成功后的方法
-			success : function(result) {
+			success : function(result,status,jqXHR) {
+				var sta = jqXHR.status;// 获取HttpStatus
 				if (result != null) {
 					alert(JSON.stringify(result));
 				}
@@ -24,7 +25,9 @@ $(function() {
 	$("#getUser").click(function() {
 		$.get({
 			url : "/user/1",
-			success : function(result) {
+			success : function(result,status,jqXHR) {
+				var issuccess = jqXHR.getResponseHeader("issuccess"); //获取响应头数据
+				var sta = jqXHR.status;// 获取HttpStatus
 				if (result != null) {
 					alert(JSON.stringify(result));
 				}
