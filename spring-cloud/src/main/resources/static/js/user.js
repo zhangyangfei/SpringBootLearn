@@ -23,7 +23,7 @@ $(function() {
 	});
 
 	$("#getUser").click(function() {
-		$.get({
+		$.post({
 			url : "/user/1",
 			success : function(result,status,jqXHR) {
 				var issuccess = jqXHR.getResponseHeader("issuccess"); //获取响应头数据
