@@ -42,7 +42,11 @@ public class UserController {
 	@RequestMapping(value = "/user/{id}")
 	public User getUser(@PathVariable int id) {
 		// User user = restTemplate.getForObject("http://localhost:9001/userRestController" + "/user/{id}", User.class, id);
-		User user2 = servcieRestTemplate.getForObject("http://"+SERVICE_USER+"/userRestController" + "/user/{id}", User.class, id);
+//		User user2 = servcieRestTemplate.getForObject("http://"+SERVICE_USER+"/userRestController" + "/user/{id}", User.class, id);
+		User user2 = null;
+		for(int i =1;i<=10;i++){
+			user2 = servcieRestTemplate.getForObject("http://"+SERVICE_USER+"/userRestController" + "/user/{id}", User.class, i);
+		}
 		return user2;
 	}
 

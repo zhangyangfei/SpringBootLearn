@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class ToHtmlController {
 	
-	//http://localhost:8080/user/userindex
+	//http://localhost:9001/user/userindex
 	@RequestMapping("/userindex")
 	public String init() {
 		return "user/userindex";
