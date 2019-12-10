@@ -8,8 +8,8 @@ public class AsyncServiceImpl implements AsyncService {
 
 	@Override
 	@Async // 使用异步调用
-	public String asynctest(String param) {
-		System.out.println(param + "=" + Thread.currentThread().getName());
+	public String asynctest(String threadName) {
+		System.out.println(threadName + " —> " + Thread.currentThread().getName());
 		return null;
 	}
 }

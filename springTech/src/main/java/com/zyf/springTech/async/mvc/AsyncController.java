@@ -18,8 +18,8 @@ public class AsyncController {
 	@RequestMapping(value="/ma1")
 	public String am1(ModelAndView mav){
 		int num = 1;
-		while (num <= 20) {
-			asyncService.asynctest(num + "");
+		while (num <= 10) {
+			asyncService.asynctest(Thread.currentThread().getName() + "");
 			num++;
 		}
 		return "asyncmvc/ma1";
