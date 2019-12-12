@@ -37,7 +37,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.anyRequest().authenticated()//所有请求都要验证
+//			.anyRequest().authenticated()//所有请求都要验证（不能匿名访问，如果希望允许匿名访问，则要注释该代码且配合自定义路径拦截处理类来处理）
 			.and().formLogin()// 使用默认from登录
 			.loginPage("/login") //自定义登录页（请求/login会返回视图，即自定义登录页面）
 			.permitAll() //登录页面用户任意访问
@@ -45,12 +45,12 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 			//.defaultSuccessUrl("/login/welcome")// 登录成功页，也可以在successHandler中处理
 //			.failureUrl("/login/fail")// 登录失败页，也可以在failureHandler中处理
 			.failureUrl("/login?error=true")//登录页获取后台错误消息【error=true重要】，如果配置failureHandler则会失效，原因不明 TODO
-			.successHandler(customAuthenticationSuccessHandler)
+			.successHandler(customAuthenticationSuccessHandler)//登录成功后处理类
 //			.failureHandler(customAuthenticationFailureHandler)//废弃不用
 			
 			.and().logout()
 			.logoutUrl("/logout")//登出请求url
-			.logoutSuccessHandler(customLogoutSuccessHandler)
+			.logoutSuccessHandler(customLogoutSuccessHandler)//登出成功后处理类
 			.and().httpBasic();// 启动http基础验证
 
 		 http.csrf().disable();// 禁用csrf，否则无法登录。如果不禁用，则要在form中提交防csrf的参数。
