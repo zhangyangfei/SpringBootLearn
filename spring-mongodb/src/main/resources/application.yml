@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      database: springmongodb
+      host: localhost
+      port: 27017
+      #username: spring
+      #password: 123456
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
