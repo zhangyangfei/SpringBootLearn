@@ -1,6 +1,8 @@
 package com.zyf.springmongodb.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,10 +37,34 @@ public class UserController {
 	public User findById(String id) {
 		return userService.findById(id);
 	}
-	
+
 	@RequestMapping("/findUsers")
 	@ResponseBody
 	public List<User> findUsers(String name, String note) {
-		return userService.findUsers(name,note);
+		return userService.findUsers(name, note);
+	}
+
+	@RequestMapping("/findUsers2")
+	@ResponseBody
+	public List<User> findUsers2(String name, int age) {
+		return userService.findUsers2(name, age);
+	}
+
+	@RequestMapping("/updateById")
+	@ResponseBody
+	public Map<String, Object> updateById(String id, String note, int age) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		long u = userService.updateById(id, note, age);
+		resultMap.put("message", "成功更新数据条数：" + u);
+		return resultMap;
+	}
+
+	@RequestMapping("/deleteById")
+	@ResponseBody
+	public Map<String, Object> deleteById(String id) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		long d = userService.deleteById(id);
+		resultMap.put("message", "成功删除数据条数：" + d);
+		return resultMap;
 	}
 }
