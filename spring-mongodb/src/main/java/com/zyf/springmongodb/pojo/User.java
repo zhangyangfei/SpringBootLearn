@@ -4,15 +4,18 @@ import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document
-public class User implements Serializable{
+// 文档实体类
+@Document //该pojo将作为MongoDB文档存在
+public class User implements Serializable{//必须实现序列化接口
 	
 	private static final long serialVersionUID = 7767440606893451627L;
 
-	@Id
+	@Id //文档主键
 	private String id;
-
+	
+	@Field("name")//关联数据库中的字段，二者不同时标注，相同则不用标注
 	private String name;
 
 	private int age;
