@@ -15,7 +15,7 @@ public class AsyncThreadPoolConfig implements AsyncConfigurer {
 
 	@Override
 	public Executor getAsyncExecutor() {
-		// 定义线程池
+		// 定义线程池【spring提供的线程池配置类，对ThreadPoolExecutor进行配置】
 		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
 		// 核心线程数=启用线程的个数
 		threadPoolTaskExecutor.setCorePoolSize(10);
