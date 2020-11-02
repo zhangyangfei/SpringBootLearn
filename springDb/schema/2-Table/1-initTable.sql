@@ -6,4 +6,5 @@ CREATE TABLE t_user (
     note VARCHAR(200) NULL,
     PRIMARY KEY (id)
 )
+COMMENT='用户表'
 DEFAULT CHARACTER SET = utf8;
