@@ -1,7 +1,7 @@
 package com.zyf.springbootshiro.shiro;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -9,7 +9,6 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import java.util.LinkedHashMap;
@@ -36,7 +35,7 @@ public class ShiroConfig {
         // anon过滤器：url可以匿名访问
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/login/action", "anon");// 登录表单提交
-        filterChainDefinitionMap.put("/hello/sh6", "anon");
+        filterChainDefinitionMap.put("/hello/anonymous", "anon");
 
         // authc过滤器：url认证通过才可以访问
         filterChainDefinitionMap.put("/admin/**", "authc");
@@ -111,4 +110,15 @@ public class ShiroConfig {
         return resolver;
     }
     // ------------------------------------------ 注解配置权限  结束-----------------------------------------------------
+
+
+    /**
+     * 权限控制控件显隐
+     * @return
+     */
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
+    }
+
 }

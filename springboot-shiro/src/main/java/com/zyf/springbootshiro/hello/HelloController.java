@@ -1,6 +1,7 @@
 package com.zyf.springbootshiro.hello;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,7 +39,28 @@ public class HelloController {
     }
 
     @RequestMapping("/sh6")
+    // 注解配置权限：登录用户需要role1角色才能访问
+    @RequiresRoles("role1")
     public String sh6() {
+        return "hello/sh1";
+    }
+
+    @RequestMapping("/sh7")
+    // 注解配置权限：登录用户需要role2角色才能访问
+    @RequiresRoles("role2")
+    public String sh7() {
+        return "hello/sh1";
+    }
+
+    @RequestMapping("/sh8")
+    // 注解配置权限：登录用户需要role3角色才能访问
+    @RequiresRoles("role3")
+    public String sh8() {
+        return "hello/sh1";
+    }
+
+    @RequestMapping("/anonymous")
+    public String anonymous() {
         return "anonymous/sa1";
     }
 }

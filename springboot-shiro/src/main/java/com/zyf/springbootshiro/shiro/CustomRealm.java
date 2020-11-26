@@ -54,6 +54,8 @@ public class CustomRealm extends AuthorizingRealm {
         permsSet.add("hello:sh2");
         permsSet.add("hello:sh4");
         info.setStringPermissions(permsSet);
+
+        info.addRole("role1");
         return info;
     }
 
