@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>欢迎页</title>
+</head>
+<body>
+	<!-- 获取当前登录用户名 -->
+	<!--<h1>登录成功，欢迎您，<span th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></span></h1>-->
+	<h1>登录成功，欢迎您</h1>
+	<a href="/logout">退出登录</a><br/>
+	<a href="/securityhello/sh1">hello</a><br/>
+</body>
+</html>

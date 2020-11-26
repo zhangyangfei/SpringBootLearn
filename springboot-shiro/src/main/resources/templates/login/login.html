@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>shiro登录</title>
+</head>
+<body>
+	<h1>请登录</h1>
+	<!-- 表单提交 -->
+	<form action="/login/action" method="post">
+		<!-- 登录验证错误消息 -->
+		<!--<p style="color: red" th:if="${param.error}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>-->
+        <p>名称：<input id="username" name="username" type="text" value=""/></p>
+        <p>密码：<input id="password" name="password" type="password" value=""/></p>
+        <p><input name="submit" type="submit" value="登录"></p>
+<!--         <input type="hidden" id="${_csrf.parameterName}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
+    </form>
+</body>
+</html>
