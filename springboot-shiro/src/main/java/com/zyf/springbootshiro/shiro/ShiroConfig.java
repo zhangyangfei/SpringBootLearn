@@ -1,12 +1,16 @@
 package com.zyf.springbootshiro.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.crazycake.shiro.RedisCacheManager;
+import org.crazycake.shiro.RedisManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
@@ -15,6 +19,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * shiro配置类
+ */
 @Configuration
 public class ShiroConfig {
 
@@ -53,7 +60,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
-
     }
 
     /**
@@ -63,6 +69,8 @@ public class ShiroConfig {
     public SecurityManager securityManager() {
         DefaultWebSecurityManager defaultSecurityManager = new DefaultWebSecurityManager();
         defaultSecurityManager.setRealm(customRealm());
+//        defaultSecurityManager.setCacheManager(ehCacheManager()); // 缓存管理器 ehcache
+        defaultSecurityManager.setCacheManager(redisCacheManager()); // 缓存管理器 redis
         return defaultSecurityManager;
     }
 
@@ -72,6 +80,8 @@ public class ShiroConfig {
     @Bean
     public CustomRealm customRealm() {
         CustomRealm customRealm = new CustomRealm();
+//        customRealm.setCacheManager(ehCacheManager()); // 缓存管理器 ehcache
+        customRealm.setCacheManager(redisCacheManager()); // 缓存管理器 redis
         return customRealm;
     }
 
@@ -111,8 +121,9 @@ public class ShiroConfig {
     }
     // ------------------------------------------ 注解配置权限  结束-----------------------------------------------------
 
-
     /**
+     * shiro模板方言
+     *
      * 权限控制控件显隐
      * @return
      */
@@ -121,4 +132,54 @@ public class ShiroConfig {
         return new ShiroDialect();
     }
 
+    // ------------------------------------------ 缓存管理器 redis  开始-------------------------------------------------
+    /**
+     * shiro缓存管理器
+     * @return
+     */
+    @Bean
+    public RedisCacheManager redisCacheManager(){
+        RedisCacheManager redisCacheManager = new RedisCacheManager();
+        redisCacheManager.setRedisManager(redisManager());
+        //redis中针对不同用户缓存
+//        redisCacheManager.setPrincipalIdFieldName("username");
+        //用户权限信息缓存时间，秒
+        redisCacheManager.setExpire(10);
+        return redisCacheManager;
+    }
+
+    @Bean
+    public RedisManager redisManager(){
+        RedisManager redisManager = new RedisManager();
+        redisManager.setHost("127.0.0.1:6379");
+//        redisManager.set.setPort(6379);
+//        redisManager.setPassword("123456");
+        return redisManager;
+    }
+
+    // ------------------------------------------ 缓存管理器 redis  结束-------------------------------------------------
+
+    // ------------------------------------------ 缓存管理器 ehcache  开始-----------------------------------------------
+    /**
+     * 缓存管理器 chcache
+     * @return
+     */
+    @Bean
+    public EhCacheManager ehCacheManager(){
+        EhCacheManager cacheManager = new EhCacheManager();
+        cacheManager.setCacheManagerConfigFile("classpath:shiro-ehcache.xml");
+        return cacheManager;
+    }
+
+    /**
+     * 设置为共享模式
+     * @return
+     */
+    @Bean
+    public EhCacheManagerFactoryBean ehCacheManagerFactoryBean() {
+        EhCacheManagerFactoryBean cacheManagerFactoryBean = new EhCacheManagerFactoryBean();
+        cacheManagerFactoryBean.setShared(true);
+        return cacheManagerFactoryBean;
+    }
+    // ------------------------------------------ 缓存管理器 ehcache  结束-----------------------------------------------
 }

@@ -14,6 +14,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 自定义realm
+ */
 public class CustomRealm extends AuthorizingRealm {
 
     /**
@@ -57,6 +60,14 @@ public class CustomRealm extends AuthorizingRealm {
 
         info.addRole("role1");
         return info;
+    }
+
+    /**
+     * 清除shiro缓存
+     */
+    public void clearCached() {
+        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+        super.clearCache(principals);
     }
 
 
