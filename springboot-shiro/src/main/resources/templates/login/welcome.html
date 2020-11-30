@@ -3,44 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <title>欢迎页</title>
+
+	<script type="text/javascript">
+	</script>
+
 </head>
+<body>
 <br>
 	<!-- 获取当前登录用户名 -->
 	<h1>登录成功，欢迎您</h1>
-	<a href="/logout">退出登录</a><br/>
+	<a th:href="@{/logout}">退出登录</a><br/>
 	</br>
-
+	</br>
 	权限控制：
 	</br>
-	<a href="/hello/sh1">/hello/sh1</a><br/>
+	<!--th: 可以加在任意标签的任意属性前，代表后面的属性值接受thymeleaf的解析，属性值被@{} 包住后，会自动在前面加上根目录-->
+	<a th:href="@{/hello/sh1}">/hello/sh1</a>
+	<br/>
 	<div shiro:hasAnyPermissions="hello:sh2"> <!--权限控制控件显隐，包含权限为hello:sh2才显示-->
-		<a href="/hello/sh2">/hello/sh2</a><br/>
+		<a th:href="@{/hello/sh2}">/hello/sh2</a><br/>
 	</div>
     <div shiro:hasAnyPermissions="hello:sh3">
-	    <a href="/hello/sh3">/hello/sh3</a><br/>
+	    <a th:href="@{/hello/sh3}">/hello/sh3</a><br/>
     </div>
-	<a href="/hello/sh4">/hello/sh4</a><br/>
-	<a href="/hello/sh5">/hello/sh5</a><br/>
+	<a th:href="@{/hello/sh4}">/hello/sh4</a>
+	<br/>
+	<a th:href="@{/hello/sh5}">/hello/sh5</a>
+	<br/>
 	<div shiro:hasAnyRoles="role1"> <!--权限控制控件显隐，角色为role1才显示-->
-		<a href="/hello/sh6">/hello/sh6</a><br/>
+		<a th:href="@{/hello/sh6}">/hello/sh6</a><br/>
 	</div>
 	<div shiro:hasAnyRoles="role2">
-		<a href="/hello/sh7">/hello/sh7</a><br/>
+		<a th:href="@{/hello/sh7}">/hello/sh7</a><br/>
 	</div>
-	<a href="/hello/sh8">/hello/sh8</a><br/>
-	<a href="/hello/anonymous">/hello/anonymous</a><br/>
+	<a th:href="@{/hello/sh8}">/hello/sh8</a><br/>
+	<a th:href="@{/hello/anonymous}">/hello/anonymous</a><br/>
 	</br>
 
 	缓存：
 	</br>
-	<a href="/hello/clearShiroCache">清除shiro缓存</a><br/>
+	<a th:href="@{/hello/clearShiroCache}">清除shiro缓存</a><br/>
 	<br/>
 
 	session操作：
 	<br/>
-	<a href="/session/getAttributeKeys">/session/getAttributeKeys</a><br/>
-	<a href="/session/setAttribute">/session/setAttribute</a><br/>
-	<a href="/session/getAttribute">/session/getAttribute</a><br/>
+	<a th:href="@{/session/getAttributeKeys}">/session/getAttributeKeys</a><br/>
+	<a th:href="@{/session/setAttribute}">/session/setAttribute</a><br/>
+	<a th:href="@{/session/getAttribute}">/session/getAttribute</a><br/>
 
 </body>
 </html>
