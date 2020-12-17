@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .active{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h2>vue基础</h2>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <div id="app" class="app">
+        <span>-------------------------> 差值表达式</span></br>
+        {{ message }}
+        <h4>{{ message }}</h4>
+        <h4>{{ student.id }}</h4> <!--对象.熟悉-->
+        <h4>{{ student.name }}</h4>
+        <h4>{{ arr[0] }}</h4>
+        <h4>{{ arr[1] }}</h4>
+
+        <span>-------------------------> v-text指令</span>
+        <h4 v-text="message + '拼接的字符串'">会被替换的文本</h4>
+        <h4>{{message + "拼接的字符串"}}---不会被替换的文本</h4>
+
+        <span>-------------------------> v-html指令</span>
+        <p v-text="websit"></p>
+        <!--可以解析为html-->
+        <p v-html="websit"></p>
+
+        <span>-------------------------> v-on指令</span></br>
+        <input type="button" value="v-on单击" v-on:click="myMethod1">
+        <input type="button" value="v-on单击简写" @click="myMethod1">
+        <input type="button" value="v-on双击简写" @dblclick="myMethod1">
+        <h4 @click="myMethod2('我是参数1','我是参数2')">{{ change }}</h4>
+        <input type="text" @keyup.enter="sayhi"></input><!--按enter执行方法-->
+        <a href="https://cn.vuejs.org/v2/api/#v-on">事件修饰符</a>
+        </br></br>
+
+        <span>-------------------------> v-show指令</span></br>
+        <h4 v-show="true">显示我</h4>
+        <h4 v-show="false">不显示我</h4>
+        <h4 v-show="isShow">不显示我</h4>
+        <h4 v-show="showNum==1">显示我</h4>
+
+        <span>-------------------------> v-if指令</span></br>
+        <h4 v-if="true">显示我</h4>
+        <h4 v-if="false">不显示我</h4>
+        <h4 v-if="isShow">不显示我</h4>
+        <h4 v-if="showNum==1">显示我</h4>
+
+        <span>-------------------------> v-bind指令</span></br>
+        <!--<img src="img/cat.jpg"></img>--><!--原生写法-->
+        <!--<img v-bind:src= "imgSrc2" ></img>-->
+        <img v-bind:src= "imgSrc1"/><!--v-bind:属性名-->
+        <img :src= "imgSrc1" :title= "imgTitle + '...拼接字符串'" :class="'active'"/> <!--简写形式-->
+        <img :src= "imgSrc1" :class="isActive?'active':''"/> <!--class三元表达式-->
+        </br></br>
+
+        <span>-------------------------> v-for指令</span></br>
+        <ul>
+            <li v-for="item in arr2">{{ item }}，{{'数组长度='+arr2.length}}</li>
+        </ul>
+        <input type="button" @click="arrAdd" value="添加元素"></input>
+        <input type="button" @click="arrRemove" value="删除元素"></input>
+        <ul>
+            <li v-for="(item,index) in arr3" :title="item.name">
+                {{ index }}，{{ item.name + '，' + item.age}}
+            </li>
+        </ul>
+        </br></br>
+
+        <span>-------------------------> v-model指令：双向绑定</span></br>
+        message输入框：<input type="text" v-model="modelMsg"></input></br>
+        <h4>message数据：{{modelMsg}}</h4>
+    </div>
+    <script>
+        var app = new Vue({
+
+            // el:挂载点
+            el:'#app',  // 在el命中的元素内部;id选择器
+            // el:".app", // class选择器
+            // el:"div", // 标签选择器
+
+            // 定义数据
+            data: {
+                message:'Hello Vue',
+                student:{
+                    id:1,
+                    name:'张三'
+                },
+                arr:['元素1','元素2','元素3'],
+                websit:"<a href='https://www.baidu.com'>百度</a>",
+                change:"改变我",
+                isShow:false,
+                showNum:1,
+                imgSrc1:"img/cat.jpg",
+                imgSrc2:"http://www.itheima.com/images/logo.png",
+                imgTitle:"小猫",
+                isActive:false,
+                arr2:[1,2,3,4,5],
+                arr3:[{name:'zhangsan',age:10},{name:'lisi',age:20},{name:'wangwu',age:30}],
+                modelMsg:'我是一条测试消息'
+            },
+            // 定义方法
+            methods:{
+                myMethod1:function(){
+                    alert('myMethod1');
+                },
+                myMethod2:function(p1,p2){
+                    // this获取定义在data中的数据
+                    this.change += "1";
+                    alert('参数：' + p1);
+                    alert('参数：' + p2);
+                },
+                sayhi:function(){
+                    alert("按了一下enter键");
+                },
+                arrAdd:function(){
+                    this.arr3.push({name:'zhaoliu',age:40});//数组末尾添加
+                },
+                arrRemove:function(){
+                    this.arr3.shift();// 数组末尾移除
+                }
+
+            }
+        })
+
+    </script>
+
+
+</body>
+</html>
