@@ -15,6 +15,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <div id="app" class="app">
         <span>-------------------------> 差值表达式</span></br>
@@ -79,6 +82,12 @@
         <span>-------------------------> v-model指令：双向绑定</span></br>
         message输入框：<input type="text" v-model="modelMsg"></input></br>
         <h4>message数据：{{modelMsg}}</h4>
+
+        <span>-------------------------> 网络请求</span></br>
+        <input type="button" @click="test1" value="网路请求1">
+        <input type="button" @click="test2" value="网路请求2">
+        <input type="button" @click="test3" value="网路请求3">
+
     </div>
     <script>
         var app = new Vue({
@@ -127,8 +136,38 @@
                 },
                 arrRemove:function(){
                     this.arr3.shift();// 数组末尾移除
+                },
+                test1:function(){
+                    axios({
+                        method:'post',
+                        url:'http://localhost:8080/springbootvue/vue/test1'
+                    }).then(function (response) {
+                        alert(JSON.stringify(response.data));
+                        console.log(response.data);
+                    });
+                },
+                test2:function(){
+                    axios({
+                        method:'post',
+                        url:'http://localhost:8080/springbootvue/vue/test2'
+                    }).then(function (response) {
+                        // alert(JSON.stringify(response.data));
+                        console.log(response.data);
+                    });
+                },
+                test3:function(){
+                    axios({
+                        method:'post',
+                        data:{"我是参数key":"我是参数value"},
+                        url:'http://localhost:8080/springbootvue/vue/test3'
+                    }).then(function (response) {
+                        // alert(JSON.stringify(response.data));
+                        console.log(response.data);
+                    },function(err){
+                        console.log("执行异常的回调函数");
+                        console.log(err);
+                    });
                 }
-
             }
         })
 
