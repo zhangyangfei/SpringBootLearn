@@ -20,7 +20,6 @@ public class SysLoggerAspect {
 
 	private Logger logger;
 
-
 	/** 日志主题 */
 	private String logTheme;
 
